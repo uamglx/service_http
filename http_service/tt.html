@@ -1,0 +1,58 @@
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>multiply</title> 
+
+</head>
+<body>
+<form id = "form1">
+A: <input type="text" name="a" placeholder="数字A" id = "A"><br>
+B: <input type="text" name="b" placeholder="数字B" id = "B"><br>
+ans: <input type="text" name = "ans" placeholder="A乘以B的结果" id = "ans"><br>
+<input type="submit" value="提交" id = "button">
+</form>
+ 
+<p>点击"提交"按钮，表单数据将被发送到服务器上的“add”程序上。</p>
+
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script type="text/javascript">
+	$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url:"add" ,//url
+                data: $('form1'),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+ 
+    </script>
+</html>
+
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>multiply</title> 
+
+</head>
+<body>
+<form action = "add">
+A: <input type="text" name="a" placeholder="数字A" id = "A"><br>
+B: <input type="text" name="b" placeholder="数字B" id = "B"><br>
+ans: <input type="text" name = "ans" placeholder="A乘以B的结果" id = "ans"><br>
+<input type="submit" value="提交" id = "button">
+</form>
+ 
+<p>点击"提交"按钮，表单数据将被发送到服务器上的“add”程序上。</p>
+
+</body>
+</html>

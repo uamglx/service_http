@@ -1,0 +1,43 @@
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>multiply</title> 
+
+</head>
+<body>
+<form id = "form1">
+A: <input type="text" name="a" placeholder="数字A" id = "A"><br>
+B: <input type="text" name="b" placeholder="数字B" id = "B"><br>
+ans: <div type="text" name = "ans" id = "ans"></div><br>
+<input type="submit" value="提交" id = "submit">
+</form>
+ 
+<p>点击"提交"按钮，表单数据将被发送到服务器上的“add”程序上。</p>
+
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script type="text/javascript">
+ $("#submit").on("click",function(){
+	var a = $("#form1 input:eq(0)").val();
+	var b = $("#form1 input:eq(1)").val();
+	$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url:"add" ,//url
+                data: {"a":a,"b":b},
+                success: function (result) {
+					$("#ans").text(result.ans);
+                    console.log(result.ans);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    };
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+	return false;
+	})
+    </script>
+</html>
